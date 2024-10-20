@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="/calculations" method="post" id="calcForm">
+        <textarea id="result" name="result" style="width: 390px; margin-left: 50px; margin-top: 44px; height: 108px; background-color: rgba(255, 255, 255, 0); border: none; resize: none; cursor: pointer; position: relative; text-align: right; padding-right: 10px; padding-bottom: 10px; font-size: 30px;" readonly></textarea>
+        <div>
+            <button type="button" id="onBtn" style="margin-top: 70px; margin-left: 50px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);">On</button>
+            <button type="button" style="margin-top: 70px; margin-left: 134px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="operatorBtn" data-value="%">%</button>
+            <button type="button" style="margin-top: 70px; margin-left: 26px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="operatorBtn" data-value="√">root</button>
+        </div>
+        <div>
+            <button type="button" style="margin-top: 20px; margin-left: 50px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="numBtn" data-value="7">7</button>
+            <button type="button" style="margin-top: 20px; margin-left: 26px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="numBtn" data-value="8">8</button>
+            <button type="button" style="margin-top: 20px; margin-left: 26px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="numBtn" data-value="9">9</button>
+            <button type="button" style="margin-top: 20px; margin-left: 27px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="operatorBtn" data-value="+">+</button>
+        </div>
+        <div>
+            <button type="button" style="margin-top: 20px; margin-left: 50px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="numBtn" data-value="4">4</button>
+            <button type="button" style="margin-top: 20px; margin-left: 26px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="numBtn" data-value="5">5</button>
+            <button type="button" style="margin-top: 20px; margin-left: 26px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="numBtn" data-value="6">6</button>
+            <button type="button" style="margin-top: 20px; margin-left: 27px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="operatorBtn" data-value="-">-</button>
+        </div>
+        <div>
+            <button type="button" style="margin-top: 20px; margin-left: 50px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="numBtn" data-value="1">1</button>
+            <button type="button" style="margin-top: 20px; margin-left: 26px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="numBtn" data-value="2">2</button>
+            <button type="button" style="margin-top: 20px; margin-left: 26px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="numBtn" data-value="3">3</button>
+            <button type="button" style="margin-top: 20px; margin-left: 27px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="operatorBtn" data-value="*">*</button>
+        </div>
+        <div>
+            <button type="button" style="margin-top: 20px; margin-left: 50px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="numBtn" data-value="0">0</button>
+            <button type="button" style="margin-top: 20px; margin-left: 26px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="numBtn" data-value=".">.</button>
+            <button type="submit" style="margin-top: 20px; margin-left: 26px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" id="equalBtn">=</button>
+            <button type="button" style="margin-top: 20px; margin-left: 27px; width: 77px; background-color: rgba(255, 255, 255, 0); height: 66px; border-radius: 15px; border: none; color: rgba(255, 255, 255, 0);" class="operatorBtn" data-value="/">/</button>
+        </div>
+
+        <input type="hidden" name="num1" id="num1" value=""/>
+        <input type="hidden" name="num2" id="num2" value=""/>
+        <input type="hidden" name="operator" id="operator" value=""/>
+    </form>
+
+    <script>
+        let isOn = false;
+        const result = document.getElementById('result');
+        
+        document.getElementById('onBtn').addEventListener('click', function() {
+            isOn = true;
+            result.value = '0';
+        });
+
+        document.querySelectorAll('.numBtn').forEach(function(button) {
+            button.addEventListener('click', function() {
+                if (isOn) {
+                    if (result.value === '0') {
+                        result.value = button.getAttribute('data-value');
+                    } else {
+                        if(result.value.includes('=')){
+                            result.value = button.getAttribute('data-value');
+                        } else {
+                            result.value += button.getAttribute('data-value');
+                        }
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('.operatorBtn').forEach(function(button) {
+            button.addEventListener('click', function() {
+                if (isOn) {
+                    if (result.value.includes('=')){
+                        
+                    } else {
+                        if (button.getAttribute('data-value') === '√') {
+                            if (result.value === '0') {
+                                result.value = button.getAttribute('data-value') + ' 0'
+                            } else {
+                                result.value = button.getAttribute('data-value') + ' ' + result.value
+                            }
+                        } else {
+                            if (result.value === '0') {
+                                result.value = '0 ' + button.getAttribute('data-value') + ' ';
+                            } else {
+                                result.value += ' ' + button.getAttribute('data-value') + ' ';
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        document.getElementById('equalBtn').addEventListener('click', function(event) {
+            if (isOn) {
+                event.preventDefault();
+
+                const expression = result.value.split(' ');
+
+                if (expression[0] === '√') {
+                    const data = {
+                        num1: parseFloat(expression[1]),
+                        num2: null,
+                        operator: '√'
+                    };
+
+                    fetch('/calculations', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data),
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(errorData => {
+                                throw new Error(errorData.detail || 'Unknown error');
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(resultData => {
+                        result.value = `√ ${data.num1}\n= ${resultData.result}`;
+                    })
+                    .catch(error => alert('수행할 수 없는 연산입니다.', error));
+
+                } else {
+                    const data = {
+                        num1: parseFloat(expression[0]),
+                        num2: parseFloat(expression[2]),
+                        operator: expression[1]
+                    };
+
+                    fetch('/calculations', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data),
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(errorData => {
+                                throw new Error(errorData.detail || 'Unknown error');
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(resultData => {
+                        let expression = `${data.num1} ${data.operator}`;
+                        
+                        if (data.num2 !== null && data.num2 !== undefined && data.num2 !== NaN) {
+                            expression += ` ${data.num2}`;
+                        }
+
+                        let resultValue = parseFloat(resultData.result);
+
+    resultValue = Math.round(resultValue * 1e12) / 1e12;
+
+    resultValue = resultValue.toString().replace(/(\.\d*?)0+$/, '$1'); 
+
+    if (resultValue.endsWith('.')) {
+        resultValue = resultValue.slice(0, -1);
+    }
+
+    result.value = `${expression}\n= ${resultValue}`;
+                    })
+                    .catch(error => {alert('수행할 수 없는 연산입니다.', error); result.value = '0';});
+                }
+            }
+        });
+    </script>
+{% endblock content %}
